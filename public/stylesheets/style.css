@@ -1,0 +1,59 @@
+.jumbotron {
+background:#333333;
+background-image: url("../images/banner-web.jpg");
+background-size: cover;
+height:600px !important;
+}
+
+.vertical-center {
+      height: 100%;
+      width: 100%;
+      text-align: center;  /* align the inline(-block) elements horizontally */
+      font: 0/0 a;         /* remove the gap between inline(-block) elements */
+    }
+    .vertical-center:before {    /* create a full-height inline block pseudo=element */
+      content: ' ';
+      display: inline-block;
+      vertical-align: middle;  /* vertical alignment of the inline element */
+      height: 100%;
+    }
+    .vertical-center > .container {
+      max-width: 100%;
+      display: inline-block;
+      vertical-align: middle;  /* vertical alignment of the inline element */
+      font: 16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;        /* <-- reset the font property */
+    }
+
+h1 {
+	
+}
+
+h3 {
+	text-align:center;
+}
+
+.bannerh1{
+	text-align: center;
+	color:#f8f8f8 !important;
+}
+
+.bannerh3{
+	color:#f8f8f8 !important;
+}
+
+.navbar-form{
+	margin-top:10px;
+}
+
+.col-lg-4{
+	text-align:center;
+	padding-top:55px;
+}
+
+.panel-footer{
+    margin-top:40px;
+}
+
+.panel-footer p{
+    text-align: center;
+}
