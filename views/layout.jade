@@ -25,14 +25,12 @@ html
             .collapse.navbar-collapse
                 ul.nav.navbar-nav
                     li
-                        a(href="#") Link
-                    li
-                        a(href="#") Link
+                        a(href="/") Link
 
-                form.navbar-form.navbar-right()
+                form.navbar-form.navbar-right(action="/username", method="post")
                     .form-group
-                        input.form-control(type="text", placeholder="Username")
+                        input.form-control(type="text", id="userName", name="userName" placeholder="Username")
                         
-                        input.form-control(type="text", placeholder="Password")
+                        input.form-control(type="password", id="passWord", name="passWord" placeholder="Password")
                     button.btn.btn-default(type="submit") Login
     block content
