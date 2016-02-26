@@ -1,19 +1,33 @@
 .jumbotron {
-background:#333333;
-background-size:cover;
-height:600px !important;
+    background-size: cover;
+    background-color:#333333;
+    color:#f8f8f8
 }
 
 .home{
     background-image: url("../images/banner-web.jpg");
+    height:500px !important;
+    background-position: left;
 }
 
 .badLogin{
     background-image: url("../images/bad-banner-web.jpg");
+    height:500px !important;
+    background-position: left;
 }
 
 .secret{
     background-image: url("../images/secret-banner-web.jpg");
+    height:500px !important;
+    background-position: left;
+}
+
+.secretForm{
+    padding:10px 10px 20px 10px;
+}
+
+.secret-btn{
+    margin-top:10px;
 }
 
 .vertical-center {
@@ -41,6 +55,14 @@ h1 {
 
 h3 {
 	text-align:center;
+}
+
+hr{
+    margin-top:10px;
+}
+
+.secret-hr{
+    margin:0px !important;
 }
 
 .bannerh1{

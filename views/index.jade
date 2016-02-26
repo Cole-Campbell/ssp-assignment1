@@ -1,39 +1,5 @@
-doctype html
-html
-    head
-        title Secrets Database
-        script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js')
-        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
-        script(src='/javascripts/jquery-1.11.3.min.js')
-        link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
-        link(rel='stylesheet', href='/stylesheets/font-awesome.min.css')
-        link(rel='stylesheet', href='/stylesheets/style.css')   
-   
-    body
-    
-        nav.navbar.navbar-default
-            container
-    
-                .navbar-header
-                    button.navbar-toggle(type="button", data-toggle="collapse", data-target=".navbar-collapse", aria-expanded="false")
-                        span.icon-bar
-                        span.icon-bar
-                        span.icon-bar
-        
-                    a.navbar-brand(href="#") Hush-Hush
-
-            .collapse.navbar-collapse
-                ul.nav.navbar-nav
-                    li
-                        a(href="/") Home
-
-
-                form.navbar-form.navbar-right(action="/index", method="post")
-                    .form-group
-                        input.form-control(type="text", id="userName", name="userName" placeholder="Username")
-                                    
-                        input.form-control(type="password", id="passWord", name="passWord" placeholder="Password")
-                        button.btn.btn-default(type="submit") Login
+extends layout
+block content  
 
     .jumbotron.home.vertical-center
         .container
@@ -43,8 +9,8 @@ html
     .container
         .col-lg-12.col-md-12
             h3 Your secret is safe with us! With the best security around, your secrets will be best kept here, and not that diary we saw your mother taking a glance at while she was "cleaning your room". 
-            
-            
+        .col-lg-10.col-md-10.col-sm-8.col-xs-6.col-lg-offset-1.col-md-offset-1.col-sm-offset-2.col-xs-offset-3
+            hr
         .col-lg-4.col-md-4.col-sm-4
             i.fa.fa-lock.fa-4x
             h2 Secure
@@ -60,10 +26,8 @@ html
             h2 Safe
             p Your secrets are safe here and definitely won't be on display in the bathroom stall.
         
-    .panel-footer 
-        p Coded with 
-            span.i.fa.fa-heart.fa-1x  by Cole. Find on  
-             a(href="https://github.com/Cole-Campbell/ssp-assignment1")
-                 span.i.fa.fa-github.fa-1x .
-             
-        
+    .jumbotron
+        h4 "I use this all the time, and no one knows that I sleep with a Teddy Bear still!"
+        h5 - Cole
+    
+    include footer

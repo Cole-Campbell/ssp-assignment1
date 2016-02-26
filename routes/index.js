@@ -26,8 +26,19 @@ router.get('/badLogin', function(req,res,next){
 router.post('/index', function(req, res, next) {
   // SELECT password from DB where username='req.body.yourName'
     
-  if (req.body.passWord == "password") {
-    res.render('secrets');
+  if (req.body.userName == "Cole" && req.body.passWord == "password") {
+    res.render('secrets', {name: req.body.userName});
+  }
+  else {
+      res.redirect('/badLogin');
+  }
+});
+
+router.post('/badLogin', function(req, res, next) {
+  // SELECT password from DB where username='req.body.yourName'
+    
+  if (req.body.userName == "Cole" && req.body.passWord == "password") {
+    res.redirect('secrets', {name: req.body.userName});
   }
   else {
       res.redirect('/badLogin');
@@ -36,16 +47,5 @@ router.post('/index', function(req, res, next) {
 
 router.post('/logout', function(req, res, next) {
     res.render('index');
-});
-
-router.post('/badLogin', function(req, res, next) {
-  // SELECT password from DB where username='req.body.yourName'
-    
-  if (req.body.passWord == "password") {
-    res.render('secrets');
-  }
-  else {
-      res.redirect('/badLogin');
-  }
 });
 module.exports = router;
