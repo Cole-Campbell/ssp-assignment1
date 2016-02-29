@@ -1,7 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var monk = require('monk');
+
+var db = monk('mongodb://admin:password@ds054128.mlab.com:54128/colossus-secrets');
+/* Secrets URL
 var db = monk('mongodb://admin:password@ds064188.mlab.com:64188/k00203819-secrets');
+*/
 
 /* GET home page with either / or index. */
 router.get('/', function(req, res, next) {
@@ -30,10 +34,10 @@ router.post('/index', function(req, res, next) {
     
     if (req.body.userName == "Cole" && req.body.passWord == "password") {
         res.render('secrets', {name: req.body.userName});
-        var collection = db.get('secrets');
+        var collection = db.get('usercollection');
             collection.find({},{},function(e,docs){
-                res.render('secrets', {
-                    "secrets" : docs
+                res.render('/secrets', {
+                    "userlist" : docs
                 });
             });
     }else {
