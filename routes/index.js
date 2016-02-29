@@ -1,14 +1,15 @@
 var express = require('express');
-var fs = require('fs');
 var router = express.Router();
+var monk = require('monk');
+var db = monk('mongodb://admin:password@ds064188.mlab.com:64188/k00203819-secrets');
 
 /* GET home page with either / or index. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'homepage' });
+  res.render('index');
 });
 
 router.get('/index', function(req, res, next) {
-  res.render('index', { title: 'homepage' });
+  res.render('index');
 });
 
 
@@ -29,20 +30,15 @@ router.post('/index', function(req, res, next) {
     
     if (req.body.userName == "Cole" && req.body.passWord == "password") {
         res.render('secrets', {name: req.body.userName});
+        var collection = db.get('secrets');
+            collection.find({},{},function(e,docs){
+                res.render('secrets', {
+                    "secrets" : docs
+                });
+            });
     }else {
       res.redirect('/badLogin');
     }
-    
-    //Read secrets in
-   fs.readFile('secrets.json', 'utf8', (err, data) => {
-       if(err) throw err;
-       
-       obj = JSON.parse(data);
-       
-       console.log("We are reading JSON! " + data);
-       
-       console.log("We are reading just secrets! " + obj.id);
-   });
 });
 
 // Post request for badLogin page if password and username are submitted

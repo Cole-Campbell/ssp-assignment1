@@ -5,11 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var mongo = require('mongodb');
+var monk = require('monk');
+var db = monk('mongodb://admin:password@ds064188.mlab.com:64188/k00203819-secrets');
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
-//Load in JSON file Secrets
-var data = require('./secrets');
 
 var app = express();
 
@@ -25,14 +26,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req,res,next){
+    req.db = db;
+    next();
+});
+
 app.use('/', routes);
 app.use('/users', users);
-
-//Getting Secrets and rendering information
-app.get('/', function(req,res) {
-   res.render('secrets', {id: [i],
-   secret: data[0]}); 
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
