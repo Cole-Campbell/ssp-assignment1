@@ -37,7 +37,12 @@ router.post('/index', function(req, res, next) {
     //Read secrets in
    fs.readFile('secrets.json', 'utf8', (err, data) => {
        if(err) throw err;
-       console.log(data);
+       
+       obj = JSON.parse(data);
+       
+       console.log("We are reading JSON! " + data);
+       
+       console.log("We are reading just secrets! " + obj.id);
    });
 });
 
