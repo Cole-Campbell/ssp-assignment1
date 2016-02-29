@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 var monk = require('monk');
 
-var db = monk('mongodb://admin:password@ds054128.mlab.com:54128/colossus-secrets');
-/* Secrets URL
+//var db = monk('mongodb://admin:password@ds054128.mlab.com:54128/colossus-secrets');
+
 var db = monk('mongodb://admin:password@ds064188.mlab.com:64188/k00203819-secrets');
-*/
+
 
 /* GET home page with either / or index. */
 router.get('/', function(req, res, next) {
@@ -19,7 +19,25 @@ router.get('/index', function(req, res, next) {
 
 /* GET bad login page if login is not proper */
 router.get('/badLogin', function(req,res,next){
-   res.render('badLogin', {title: 'badLogin'}); 
+   res.render('badLogin', {title: 'badLogin'});
+   
+   var collection = db.get('usercollection');
+        collection.find({},{},function(e,docs){
+            res.render('userlist', {
+                "userlist" : docs
+            });
+        }); 
+});
+
+/* Test Page */
+router.get('/badLogin', function(req, res) {
+    
+    var collection = db.get('secrets');
+    collection.find({},{},function(e,docs){
+        res.render('badlogin', {
+            "secrets" : docs
+        });
+    });
 });
 
 
@@ -30,16 +48,24 @@ router.get('/secrets', function(req, res, next) {
 
 
 // Post request for index if password and username are submitted.
-router.post('/index', function(req, res, next) {
+router.post('/index', function(req, res) {
     
     if (req.body.userName == "Cole" && req.body.passWord == "password") {
         res.render('secrets', {name: req.body.userName});
+        
         var collection = db.get('usercollection');
-            collection.find({},{},function(e,docs){
-                res.render('/secrets', {
-                    "userlist" : docs
-                });
+        collection.find({},{},function(e,docs){
+            res.render('userlist', {
+                "userlist" : docs
             });
+        });
+
+/*        var collection = db.get('secrets');
+            collection.find({},function(e,docs){
+                res.render('/secrets', {
+                    "secrets" : docs
+                });
+            });*/
     }else {
       res.redirect('/badLogin');
     }

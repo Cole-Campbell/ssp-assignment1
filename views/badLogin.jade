@@ -1,6 +1,6 @@
 extends layout
 block content  
-
+    
     .jumbotron.badLogin.vertical-center
         .container
             h1.bannerh1 I Thought We Were Friends
@@ -15,7 +15,6 @@ block content
             i.fa.fa-lock.fa-4x
             h2 Secure
             p With this secrets database, your secrets will always be safe! So take that Stacey!
-                
         .col-lg-4.col-md-4.col-sm-4
             i.fa.fa-code.fa-4x
             h2 Node
@@ -25,7 +24,10 @@ block content
             i.fa.fa-unlink.fa-4x
             h2 Safe
             p Your secrets are safe here and definitely won't be on display in the bathroom stall.
-        
+
+        .col-lg-12
+            extends layout
+            block content
     .jumbotron
         h4 "I use this all the time, and no one knows that I sleep with a Teddy Bear still!"
         h5 - Cole
