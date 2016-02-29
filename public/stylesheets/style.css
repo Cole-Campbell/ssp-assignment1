@@ -7,7 +7,7 @@
 .home{
     background-image: url("../images/banner-web.jpg");
     height:500px !important;
-    background-position: left;
+    background-position: center;
 }
 
 .badLogin{
@@ -19,7 +19,7 @@
 .secret{
     background-image: url("../images/secret-banner-web.jpg");
     height:500px !important;
-    background-position: left;
+    background-position: center;
 }
 
 .secretForm{
