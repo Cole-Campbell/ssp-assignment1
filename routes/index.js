@@ -1,6 +1,5 @@
 var express = require('express');
 var fs = require('fs');
-var obj;
 var router = express.Router();
 
 /* GET home page with either / or index. */

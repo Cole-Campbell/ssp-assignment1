@@ -8,6 +8,9 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+//Load in JSON file Secrets
+var data = require('./secrets');
+
 var app = express();
 
 // view engine setup
@@ -24,6 +27,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+
+//Getting Secrets and rendering information
+app.get('/', function(req,res) {
+   res.render('secrets', {id: [i],
+   secret: data[0]}); 
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
