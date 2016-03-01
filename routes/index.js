@@ -25,21 +25,13 @@ router.get('/badLogin', function(req,res,next){
    res.render('badLogin', {title: 'badLogin'});
 });
 
-/* Secrets redirect if user tries to visit Secrets without logging in */
-router.get('/usersSecrets', function(req, res, next) {
-  if (log = 0){
-    res.redirect('/index');
-  } else {
-      res.render('/usersSecrets')
-  }
-});
-
-
 // Post request for index if password and username are submitted.
 router.post('/index', function(req, res) {
     
     if (req.body.userName == "Cole" && req.body.passWord == "password") {
-        
+        /*
+        req.session.userName = req.body.userName;
+        */
         var collection = db.get('secrets');
         collection.find({},{},function(e,docs){
             res.render('userssecrets', {
@@ -49,6 +41,22 @@ router.post('/index', function(req, res) {
 
     }else {
       res.redirect('/badLogin');
+    }
+});
+
+
+router.all('/secrets', function(req, res) {
+    
+    if (req.session.userName) {
+        var collection = db.get('secrets');
+        collection.find({},{},function(e,docs){
+            res.render('usersSecrets', {
+                "secrets" : docs
+            });
+        });
+    }
+    else {
+        res.redirect('/badlogin');
     }
 });
 
@@ -93,7 +101,7 @@ router.post('/addsecret', function(req,res) {
             res.send("There was a problem adding your information to the database");
         } else{
             //Forward to success page
-            res.redirect("/usersSecrets");
+            res.redirect('/secrets');
         }
     });
 });
