@@ -44,22 +44,6 @@ router.post('/index', function(req, res) {
     }
 });
 
-
-router.all('/secrets', function(req, res) {
-    
-    if (req.session.userName) {
-        var collection = db.get('secrets');
-        collection.find({},{},function(e,docs){
-            res.render('usersSecrets', {
-                "secrets" : docs
-            });
-        });
-    }
-    else {
-        res.redirect('/badlogin');
-    }
-});
-
 // Post request for badLogin page if password and username are submitted
 router.post('/badLogin', function(req, res, next) {
     
@@ -101,12 +85,44 @@ router.post('/addsecret', function(req,res) {
             res.send("There was a problem adding your information to the database");
         } else{
             //Forward to success page
-            res.redirect('/secrets');
+            var collection = db.get('secrets');
+                collection.find({},{},function(e,docs){
+                res.render('usersSecrets', {
+                    "secrets" : docs
+                });
+            });
         }
     });
 });
 
 //REMOVING SECRET
+
+router.post('/remove', function(req,res) {
+    
+    //Database variable
+    var secretid = req.body.id;
+    
+    //Set Collection in which information will be stored to
+    var collection = db.get('secrets');
+    
+    //Submit information to DB
+    collection.remove({
+        "_id": secretid,
+    }, function (err, doc) {
+        if(err){
+            //If it fails to add to the database then it will return the error
+            res.send("There was a problem adding your information to the database");
+        } else{
+            //Forward to success page
+            var collection = db.get('secrets');
+                collection.find({},{},function(e,docs){
+                res.render('usersSecrets', {
+                    "secrets" : docs
+                });
+            });
+        }
+    });
+});
 
 //REMOVE ALL
 router.post('/removeAll', function (req, res) {

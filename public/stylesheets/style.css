@@ -101,3 +101,7 @@ p a{
 p a:hover{
     color: steelblue;
 }
+
+.btn-danger{
+    margin:20px 0px 60px 0px;
+}
