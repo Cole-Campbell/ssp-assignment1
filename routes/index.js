@@ -107,9 +107,9 @@ router.post('/remove', function(req,res) {
     
     //Submit information to DB
     collection.remove({
-        for(secretid){
-        "id": secretid,
-        }
+       
+            "id": secretid,
+        
     }, function (err, doc) {
         if(err){
             //If it fails to add to the database then it will return the error
