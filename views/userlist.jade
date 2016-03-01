@@ -1,3 +1,58 @@
-each user, i in secrets
-    p #{user.userSecret}
-block content
+doctype html
+html
+    head
+        title Secrets Database
+        script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+        script(src='/javascripts/jquery-1.11.3.min.js')
+        link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+        link(rel='stylesheet', href='/stylesheets/font-awesome.min.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')   
+   
+    body
+    
+        nav.navbar.navbar-default
+            container
+    
+                .navbar-header
+                    button.navbar-toggle(type="button", data-toggle="collapse", data-target=".navbar-collapse", aria-expanded="false")
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+        
+                    a.navbar-brand(href="#") Hush-Hush
+
+            .collapse.navbar-collapse
+                ul.nav.navbar-nav
+                    li
+                        a(href="/") Home
+
+                form.navbar-form.navbar-right(action="/logout", method="post")
+                        button.btn.btn-default(type="submit") Logout
+
+    .jumbotron.secret.vertical-center
+        .container
+            h1.bannerh1 Right Where You Left Them
+            h3.bannerh3 (We Swear They Are.)
+            
+    .container
+        .col-lg-12.col-md-12
+            h3 Hello #{name}! Right down below is where you left your secrets. We wouldn't move them on you.
+        .row
+            .col-lg-10.col-md-10.col-sm-8.col-xs-6.col-lg-offset-1.col-md-offset-1.col-sm-offset-2.col-xs-offset-3
+                hr
+        .col-lg-12.clearfix
+            h4 Tell Us Your Secrets
+            form.navbar-form(name="addsecret",action="/addsecret", method="post")
+                .formgroup.secretForm
+                    input.form-control#inputSecret(type="text", placeholder="Secret", name="newsecret")
+                    button.btn.secret-btn.btn-default(type="submit") Store
+        .col-lg-12.secret-hr
+            hr
+            h2 Your Secrets                             
+        each user, i in secrets
+            .col-lg-6
+                form.navbar-form.navbar-right(name="removesecret", action="/remove", method="post")
+                    p #{user.userSecret} 
+                        button.btn.btn-default(type="submit", id=i, name="removeSecret") Delete
+    include footer
