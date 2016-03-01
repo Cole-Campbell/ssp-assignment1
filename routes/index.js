@@ -6,7 +6,6 @@ var monk = require('monk');
 
 var db = monk('mongodb://admin:password@ds064188.mlab.com:64188/k00203819-secrets');
 
-
 /* GET home page with either / or index. */
 router.get('/', function(req, res, next) {
   res.render('index');
@@ -16,24 +15,65 @@ router.get('/index', function(req, res, next) {
   res.render('index');
 });
 
+router.get('/putout', function(req, res, next) {
+  res.redirect('index');
+});
+
 
 /* GET bad login page if login is not proper */
 router.get('/badLogin', function(req,res,next){
    res.render('badLogin', {title: 'badLogin'});
 });
 
-/* Writing secrets to USERLIST page */
-router.get('/userlist', function(req, res) {
-    
-    var collection = db.get('secrets');
-    collection.find({},{},function(e,docs){
-        res.render('userlist', {
-            "secrets" : docs
-        });
-    });
+/* Secrets redirect if user tries to visit Secrets without logging in */
+router.get('/usersSecrets', function(req, res, next) {
+  if (log = 0){
+    res.redirect('/index');
+  } else {
+      res.render('/usersSecrets')
+  }
 });
 
-//Adding secrets function
+
+// Post request for index if password and username are submitted.
+router.post('/index', function(req, res) {
+    
+    if (req.body.userName == "Cole" && req.body.passWord == "password") {
+        
+        var collection = db.get('secrets');
+        collection.find({},{},function(e,docs){
+            res.render('userssecrets', {
+                "secrets" : docs
+            });
+        });
+
+    }else {
+      res.redirect('/badLogin');
+    }
+});
+
+// Post request for badLogin page if password and username are submitted
+router.post('/badLogin', function(req, res, next) {
+    
+    if (req.body.userName == "Cole" && req.body.passWord == "password") {
+        var collection = db.get('secrets');
+        collection.find({},{},function(e,docs){
+            res.render('userssecrets', {
+                "secrets" : docs
+            });
+        });
+    }else {
+        res.redirect('/badLogin');
+    }
+});
+
+
+//Post for logout button on secrets page.
+router.post('/logout', function(req, res, next) {
+    res.render('index');
+});
+
+//ADDING SECRETS FUNCTION
 router.post('/addsecret', function(req,res) {
     
     //Database variable
@@ -53,55 +93,24 @@ router.post('/addsecret', function(req,res) {
             res.send("There was a problem adding your information to the database");
         } else{
             //Forward to success page
-            res.redirect("userlist");
+            res.redirect("/usersSecrets");
         }
     });
 });
 
-/* Secrets redirect if user tries to visit Secrets without logging in */
-router.get('/secrets', function(req, res, next) {
-  res.redirect('/index');
-});
+//REMOVING SECRET
 
-
-// Post request for index if password and username are submitted.
-router.post('/index', function(req, res) {
+//REMOVE ALL
+router.post('/removeAll', function (req, res) {
+    var collection = db.get('secrets');
     
-    if (req.body.userName == "Cole" && req.body.passWord == "password") {
-        res.render('secrets', {name: req.body.userName});
-        
-        var collection = db.get('usercollection');
-        collection.find({},{},function(e,docs){
-            res.render('userlist', {
-                "userlist" : docs
-            });
-        });
-
-/*        var collection = db.get('secrets');
-            collection.find({},function(e,docs){
-                res.render('/secrets', {
-                    "secrets" : docs
-                });
-            });*/
-    }else {
-      res.redirect('/badLogin');
-    }
-});
-
-// Post request for badLogin page if password and username are submitted
-router.post('/badLogin', function(req, res, next) {
-    
-    if (req.body.userName == "Cole" && req.body.passWord == "password") {
-        res.redirect('secrets', {name: req.body.userName});
-    }else {
-        res.redirect('/badLogin');
-    }
-});
-
-
-//Post for logout button on secrets page.
-router.post('/logout', function(req, res, next) {
-    res.render('index');
-});
+    collection.remove({}, function(err, doc) {
+        if(err){
+            res.send("GET MORE FIRE!");
+        } else{
+            res.render("putout")
+        }
+    });
+})
 
 module.exports = router;

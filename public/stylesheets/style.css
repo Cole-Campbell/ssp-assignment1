@@ -10,6 +10,11 @@
     background-position: center;
 }
 
+.burn{
+    background-image: url("../images/burn-banner-web.jpg");
+    height:500px !important;
+}
+
 .badLogin{
     background-image: url("../images/bad-banner-web.jpg");
     height:500px !important;
