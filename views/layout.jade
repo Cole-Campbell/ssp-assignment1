@@ -1,6 +1,8 @@
+//Layout which is used for most pages headers
 doctype html
 html
     head
+        //Bootstrap CSS and JS called. Make sure JS is called before CSS or JS won't initialize
         title Secrets Database
         script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js')
         script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
@@ -13,7 +15,7 @@ html
     
         nav.navbar.navbar-default
             container
-    
+                //Calls Mobile/Collapse nav if page gets past a certain viewport.
                 .navbar-header
                     button.navbar-toggle(type="button", data-toggle="collapse", data-target=".navbar-collapse", aria-expanded="false")
                         span.icon-bar
@@ -26,6 +28,7 @@ html
                 ul.nav.navbar-nav
                     li
                         a(href="/") Home
+                //Login form which calls to the index.js and to the login function and checks if login is correct
                 form.navbar-form.navbar-right(action="/index", method="post")
                     .form-group
                         input.form-control(type="text", id="userName", name="userName" placeholder="Username")          

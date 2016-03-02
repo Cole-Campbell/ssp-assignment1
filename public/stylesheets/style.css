@@ -1,3 +1,4 @@
+/*Jumbotron Style Edits*/
 .jumbotron {
     background-size: cover;
     background-color:#333333;
@@ -27,47 +28,25 @@
     background-position: center;
 }
 
-.secretForm{
-    padding:10px 10px 20px 10px;
-}
-
-.secret-btn{
-    margin-top:10px;
-}
+/*Jumbotron Text Style Edits*/
 
 .vertical-center {
       height: 100%;
       width: 100%;
       text-align: center;  /* align the inline(-block) elements horizontally */
       font: 0/0 a;         /* remove the gap between inline(-block) elements */
-    }
-    .vertical-center:before {    /* create a full-height inline block pseudo=element */
+}
+.vertical-center:before {    /* create a full-height inline block pseudo=element */
       content: ' ';
       display: inline-block;
       vertical-align: middle;  /* vertical alignment of the inline element */
       height: 100%;
-    }
-    .vertical-center > .container {
+}
+.vertical-center > .container {
       max-width: 100%;
       display: inline-block;
       vertical-align: middle;  /* vertical alignment of the inline element */
       font: 16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;        /* <-- reset the font property */
-    }
-
-h1 {
-	
-}
-
-h3 {
-	text-align:center;
-}
-
-hr{
-    margin-top:10px;
-}
-
-.secret-hr{
-    margin:0px !important;
 }
 
 .bannerh1{
@@ -79,8 +58,35 @@ hr{
 	color:#f8f8f8 !important;
 }
 
+/*Form style edits*/
+.secretForm{
+    padding:10px 10px 20px 10px;
+}
+
+.secret-btn{
+    margin-top:10px;
+}
+
 .navbar-form{
 	margin-top:10px;
+}
+
+.btn-danger{
+    margin:20px 0px 60px 0px;
+}
+
+/*Page Text Style Edits*/
+
+h3 {
+	text-align:center;
+}
+
+hr{
+    margin-top:10px;
+}
+
+.secret-hr{
+    margin:0px !important;
 }
 
 .col-lg-4{
@@ -100,10 +106,6 @@ p a{
 
 p a:hover{
     color: steelblue;
-}
-
-.btn-danger{
-    margin:20px 0px 60px 0px;
 }
 
 .secrettext{

@@ -1,3 +1,4 @@
+//App JS File - Standard required modules, don't touch unless needed
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -5,11 +6,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//Adding Modules MongoDB and Monk to access MongoLab Database
+//Declared MongoLab login
 var mongo = require('mongodb');
 var monk = require('monk');
-
 var db = monk('mongodb://admin:password@ds064188.mlab.com:64188/k00203819-secrets');
 
+//Main app creating routes and error pages
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
