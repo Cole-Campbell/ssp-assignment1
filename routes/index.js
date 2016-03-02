@@ -103,9 +103,15 @@ router.post('/remove', function(req,res) {
     
     //Submit information to DB
     collection.remove({
+<<<<<<< HEAD
         //Declared the name of the variable of the database in which we will look for and delete
         //if the "id" is equal to the variable secretid
         "id": secretid,
+=======
+       
+            "id": secretid,
+        
+>>>>>>> 3378932ea3a455424639fe624a92b2a224b5ec6c
     }, function (err, doc) {
         if(err){
             //If it fails to add to the database then it will return the error
