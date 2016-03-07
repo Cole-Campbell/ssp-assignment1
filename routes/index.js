@@ -106,7 +106,7 @@ router.post('/remove', function(req,res) {
 
         //Declared the name of the variable of the database in which we will look for and delete
         //if the "id" is equal to the variable secretid
-        "id": secretid,
+        id : secretid,
      
     }, function (err, doc) {
         if(err){

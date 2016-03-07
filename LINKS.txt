@@ -1,0 +1,2 @@
+Github: https://github.com/Cole-Campbell/ssp-assignment1
+Azure: http://ssp-assignment1.azurewebsites.net/
